@@ -1,22 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
 
 function App() {
+    const [seconds, setSeconds] = useState(0)
+    const [periods, setPeriods] = useState("")
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPeriods(periods + ".")
+            setSeconds(seconds + 1)
+            if(seconds % 4 === 0) {
+                setPeriods("")
+            }
+        }, 1300);
+        return () => {
+            clearInterval(interval)
+        }
+    })
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+         <code>Work-in-progress {periods}</code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+            <code>
+                <a href="https://www.linkedin.com/in/august-sosick-6334ab170/">Linkedin</a>
+            </code>
+        </p>
       </header>
     </div>
   );
